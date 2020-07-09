@@ -1,6 +1,9 @@
-function* game() {
+function* player(name) {
   let state = {
-    foo: 'bar',
+    x: 0,
+    y: 0,
+    health: 100,
+    name
   };
 
   while (true) {
@@ -9,8 +12,8 @@ function* game() {
   }
 }
 
-export const make = () => {
-  const atom = game();
+export const make = (name) => {
+  const atom = player(name);
   atom.next();
   return atom; 
 }

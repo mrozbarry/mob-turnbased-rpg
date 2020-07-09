@@ -4,7 +4,9 @@ describe('game', () => {
   it('creates a game', ()=> {
     const game = Game.make();
     const state = game.next().value;
-    expect(state).not.toBeNull();
+    expect(state).toEqual({
+      foo: 'bar',
+    });
 
   })
 })
