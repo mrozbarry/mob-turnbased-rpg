@@ -2,7 +2,7 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "test": "jest ./src/**/*.spec.js",
+    "test": "jest",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "prettier --check \"src/**/*.js\""
   },
@@ -14,6 +14,7 @@
     "snowpack": "^2.6.4"
   },
   "jest": {
+    "verbose": true,
     "transform": {
       ".js": "jest-esm-transformer" 
     }

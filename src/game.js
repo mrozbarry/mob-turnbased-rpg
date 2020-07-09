@@ -1,16 +1,19 @@
-function* game() {
+function* game(player) {
   let state = {
-    foo: 'bar',
+    player: player ? player.next().value : undefined
   };
 
   while (true) {
     const action = yield state;
-    // ... update state
+    state = {
+      ...state, 
+      player: player? player.next(action).value: undefined
+    }
   }
 }
 
-export const make = () => {
-  const atom = game();
+export const make = (player) => {
+  const atom = game(player);
   atom.next();
   return atom; 
 }
