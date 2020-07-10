@@ -28,5 +28,22 @@ describe('game', () => {
     game.return(null);
   });
 
-  xit('player can move in direction', () => {})
+  it('player can move in direction', () => {
+
+    const player = Player.make('Bob');
+
+    const game = Game.make(player);
+    const state = game.next('right').value;
+    expect(state).toEqual({
+      player: {
+        x: 1,
+        y: 0,
+        health: 100,
+        name: 'Bob'
+      }
+    });
+    
+    player.return(null); 
+    game.return(null);
+  })
 });

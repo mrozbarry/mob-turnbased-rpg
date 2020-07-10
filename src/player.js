@@ -9,6 +9,22 @@ function* player(name) {
   while (true) {
     const action = yield state;
     // ... update state
+    if (action == 'up') {
+      state.y--;
+    }
+
+    if (action == 'down') {
+      state.y++;
+    }
+
+    if (action == 'right') {
+      state.x++;
+    }
+
+    if (action == 'left') {
+      state.x--;
+    }
+
   }
 }
 
