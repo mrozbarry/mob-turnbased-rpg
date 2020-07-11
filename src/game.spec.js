@@ -6,6 +6,7 @@ describe('game', () => {
     const game = Game.make();
     const state = game.next().value;
     expect(state).toEqual({
+      ...Game.defaultState,
       player: undefined,
     });
     game.return(null);
@@ -17,6 +18,7 @@ describe('game', () => {
     const game = Game.make(player);
     const state = game.next().value;
     expect(state).toEqual({
+      ...Game.defaultState,
       player: {
         x: 0,
         y: 0,
@@ -35,6 +37,7 @@ describe('game', () => {
     const game = Game.make(player);
     const state = game.next('right').value;
     expect(state).toEqual({
+      ...Game.defaultState,
       player: {
         x: 1,
         y: 0,
