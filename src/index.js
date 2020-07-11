@@ -1,21 +1,22 @@
 import * as Game from './game';
 import * as Player from './player.js';
 
-const player = Player.make('Perpooply');
 const world = document.querySelector('#world');
-const size = {
-  width: 150,
-  height: 30,
-}
 
+const player = Player.make('Perpooply');
 const game = Game.make(player);
-console.log(game);
 
 const update = (action) => {
-  const {value:state} = game.next(action);
+  const {
+    value: state,
+    done,
+  } = game.next(action);
+
+  if (done) return;
+
   let worldString = '';
-  for(let y = 0; y < size.height; y++) {
-    for(let x = 0; x < size.width; x++) {
+  for(let y = 0; y < state.size.height; y++) {
+    for(let x = 0; x < state.size.width; x++) {
       worldString += state.player.x === x && state.player.y === y 
         ? '@'
         :'.';

@@ -1,5 +1,14 @@
+export const defaultState = {
+  size: {
+    width: 80,
+    height: 20,
+  },
+  player: undefined,
+};
+
 function* game(player) {
   let state = {
+    ...defaultState,
     player: player ? player.next().value : undefined
   };
 
