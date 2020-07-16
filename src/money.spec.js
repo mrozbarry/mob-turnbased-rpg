@@ -7,5 +7,10 @@ describe('money', () => {
     const state = money.next().value;
 
     expect(state).toHaveLength(numberOfMoney);
+    state.forEach(money => {
+      expect(money).toHaveProperty('x');
+      expect(money).toHaveProperty('y');
+      expect(money).toHaveProperty('amount');
+    });
   });
 });

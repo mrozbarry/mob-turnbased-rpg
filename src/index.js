@@ -16,10 +16,14 @@ const update = (action) => {
   let worldString = '';
   for(let y = 0; y < size.height; y++) {
     for(let x = 0; x < size.width; x++) {
-      worldString += state.player.x === x && state.player.y === y 
-        ? '@'
-        :'.';
-
+      let characterToAdd = '.'
+      if (state.player.x === x && state.player.y === y) {
+        characterToAdd = '@';
+      }
+      if (state.money.find((money) => money.x == x && money.y == y)) {
+        characterToAdd = '$';
+      }
+      worldString += characterToAdd;
     }
     worldString += '\n';
   }

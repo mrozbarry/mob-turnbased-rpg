@@ -1,7 +1,7 @@
 import * as Money from './money.js';
 
 function* game(player) {
-  const money = Money.make();
+  const money = Money.make(33);
 
   let state = {
     player: player ? player.next().value : undefined,

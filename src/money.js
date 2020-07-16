@@ -1,7 +1,11 @@
 function* money(numberOfMoney) {
   const state = []
   for (let i = 0; i < numberOfMoney; i++) {
-    state.push({})
+    state.push({
+      x: Math.floor(Math.random() * 30),
+      y: Math.floor(Math.random() * 30),
+      amount: 10
+    })
   }
 
   while (true) {
