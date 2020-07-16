@@ -5,9 +5,9 @@ describe('game', () => {
   it('creates a game', ()=> {
     const game = Game.make();
     const state = game.next().value;
-    expect(state).toEqual({
-      player: undefined,
-    });
+
+    expect(typeof state).toBe('object');
+
     game.return(null);
   });
 
@@ -16,7 +16,7 @@ describe('game', () => {
 
     const game = Game.make(player);
     const state = game.next().value;
-    expect(state).toEqual({
+    expect(state).toMatchObject({
       player: {
         x: 0,
         y: 0,
@@ -34,7 +34,7 @@ describe('game', () => {
 
     const game = Game.make(player);
     const state = game.next('right').value;
-    expect(state).toEqual({
+    expect(state).toMatchObject({
       player: {
         x: 1,
         y: 0,
@@ -46,4 +46,11 @@ describe('game', () => {
     player.return(null); 
     game.return(null);
   })
+
+  it('has money', () => {
+    const player = Player.make('Johnny');
+    const game = Game.make(player);
+
+    expect(game.next().value).toHaveProperty('money');
+  });
 });
