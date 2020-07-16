@@ -1,17 +1,16 @@
-function* money() {
-  const state = [{
-    x: 69,
-    y: 20,
-    amount: 420,
-  }]
+function* money(numberOfMoney) {
+  const state = []
+  for (let i = 0; i < numberOfMoney; i++) {
+    state.push({})
+  }
 
   while (true) {
     const action = yield state;
   }
 }
 
-export const make = () => {
-  const atom = money()
+export const make = (numberOfMoney) => {
+  const atom = money(numberOfMoney)
 
   atom.next()
 
