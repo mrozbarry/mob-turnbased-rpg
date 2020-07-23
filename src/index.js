@@ -4,11 +4,11 @@ import * as Player from './player.js';
 const player = Player.make('Perpooply');
 const world = document.querySelector('#world');
 const size = {
-  width: 150,
-  height: 30,
+  width: 80,
+  height: 25,
 }
 
-const game = Game.make(player);
+const game = Game.make(player, size);
 console.log(game);
 
 const update = (action) => {

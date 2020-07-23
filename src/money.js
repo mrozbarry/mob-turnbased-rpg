@@ -1,20 +1,31 @@
-function* money(numberOfMoney) {
+function* money(numberOfMoney, width, height) {
   const state = []
-  for (let i = 0; i < numberOfMoney; i++) {
-    state.push({
-      x: Math.floor(Math.random() * 30),
-      y: Math.floor(Math.random() * 30),
-      amount: 10
-    })
-  }
 
+  while(numberOfMoney > 0) {
+    const x = Math.floor(Math.random() * width);
+    const y = Math.floor(Math.random() * height);
+
+    state.push({x, y});
+    numberOfMoney--;
+  }
+  
   while (true) {
     const action = yield state;
+    if (!action) continue;
+    switch (action.action) {
+      case 'pick-up':
+        let index = state.findIndex(m => m.x === action.x && m.y === action.y);
+        while (index !== -1) {
+          state.splice(index, 1);
+          index = state.findIndex(m => m.x === action.x && m.y === action.y);
+        }
+        break;
+    }
   }
 }
 
-export const make = (numberOfMoney) => {
-  const atom = money(numberOfMoney)
+export const make = (numberOfMoney, width, height) => {
+  const atom = money(numberOfMoney, width, height)
 
   atom.next()
 

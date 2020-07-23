@@ -24,7 +24,28 @@ describe('game', () => {
         name: 'Bob'
       }
     });
-    player.return(null); 
+    player.return(null);
+    game.return(null);
+  });
+
+  it('can accept board dimensions', () => {
+    const board = {width: 10, height: 10}
+
+    const player = Player.make('Bob');
+
+    const game = Game.make(player, board);
+    const state = game.next().value;
+
+    expect(state).toMatchObject({
+      board: {height: 10, width: 10}
+    });
+
+    state.money.forEach((spondulix) => {
+      expect(spondulix.x).not.toBeNaN();
+      expect(spondulix.y).not.toBeNaN();
+    });
+
+    player.return(null);
     game.return(null);
   });
 
@@ -42,8 +63,8 @@ describe('game', () => {
         name: 'Bob'
       }
     });
-    
-    player.return(null); 
+
+    player.return(null);
     game.return(null);
   })
 
