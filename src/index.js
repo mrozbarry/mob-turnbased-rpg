@@ -9,11 +9,15 @@ const size = {
 }
 
 const game = Game.make(player, size);
-console.log(game);
 
 const update = (action) => {
   const {value:state} = game.next(action);
-  let worldString = `\$ ${state.player.money} \n`;
+  const playerMoney = `\$ ${state.player.money}`;
+  let worldString = [
+    '+'.padEnd(19, '-') + '+',
+    `| ${playerMoney.padEnd(17)}|`,
+    `${'+'.padEnd(19, '-')}+\n`
+  ].join(`\n`);
   for(let y = 0; y < size.height; y++) {
     for(let x = 0; x < size.width; x++) {
       let characterToAdd = '.'
@@ -34,7 +38,6 @@ const update = (action) => {
 update();
 
 document.addEventListener('keydown', (event) => {
-  console.log(event.key);
   switch(event.key) {
     case 'ArrowUp':
       return update('up');

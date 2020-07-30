@@ -74,4 +74,54 @@ describe('game', () => {
 
     expect(game.next().value).toHaveProperty('money');
   });
+
+  it('player cannot move left when at 0', () => {
+    const board = {width: 2, height: 2};
+    const player = Player.make('Bob');
+    const game = Game.make(player, board);
+
+    expect(game.next().value).toMatchObject({
+      player: {
+        x: 0,
+        y: 0,
+      }
+    });
+
+    const state = game.next({ action: 'left' }).value;
+
+    expect(state).toMatchObject({
+      player: {
+        x: 0,
+        y: 0,
+      }
+    });
+
+    player.return(null);
+    game.return(null);
+  })
+
+  it.skip('player cannot move right when at board x limit', () => {
+    const board = {width: 2, height: 2};
+    const player = Player.make('Bob');
+    const game = Game.make(player, board);
+
+    expect(game.next().value).toMatchObject({
+      player: {
+        x: 0,
+        y: 0,
+      }
+    });
+
+    const state = game.next({ action: 'left' }).value;
+
+    expect(state).toMatchObject({
+      player: {
+        x: 0,
+        y: 0,
+      }
+    });
+
+    player.return(null);
+    game.return(null);
+  })
 });
