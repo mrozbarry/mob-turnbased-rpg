@@ -13,7 +13,7 @@ console.log(game);
 
 const update = (action) => {
   const {value:state} = game.next(action);
-  let worldString = '';
+  let worldString = `\$ ${state.player.money} \n`;
   for(let y = 0; y < size.height; y++) {
     for(let x = 0; x < size.width; x++) {
       let characterToAdd = '.'

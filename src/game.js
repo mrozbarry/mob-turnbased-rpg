@@ -16,13 +16,15 @@ function* game(player, board) {
     // Tell money, using moneyState = money.next({ type: 'player-move', player })
     // player.next({ type: 'add-money' })
 
-    let nextPlayer = player ? player.next(action).value : undefined;
-    const shouldPickUp = state.money.some(m => m.x === nextPlayer.x && m.y === nextPlayer.y);
+    let nextPlayer = player ? player.next({ action }).value : undefined;
+
+    const shouldPickUp = player && state.money.some(m => m.x === nextPlayer.x && m.y === nextPlayer.y);
     const pickupAction = shouldPickUp
       ? { action: 'pick-up', ...nextPlayer }
       : null;
+
     if (shouldPickUp) {
-      console.log('You got a coin');
+      nextPlayer = player.next({ action: 'add-money' }).value;
     }
 
     state = {
