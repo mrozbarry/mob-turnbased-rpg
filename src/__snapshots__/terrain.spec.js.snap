@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`terrain can use the noise generator to create stuff 1`] = `
+Array [
+  Object {
+    "type": "*",
+    "x": 5,
+    "y": 1,
+  },
+  Object {
+    "type": "*",
+    "x": 5,
+    "y": 4,
+  },
+  Object {
+    "type": "*",
+    "x": 7,
+    "y": 3,
+  },
+]
+`;

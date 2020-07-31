@@ -87,7 +87,7 @@ describe('game', () => {
       }
     });
 
-    const state = game.next({ action: 'left' }).value;
+    const state = game.next('left').value;
 
     expect(state).toMatchObject({
       player: {
@@ -98,10 +98,10 @@ describe('game', () => {
 
     player.return(null);
     game.return(null);
-  })
+  });
 
-  it.skip('player cannot move right when at board x limit', () => {
-    const board = {width: 2, height: 2};
+  it('player cannot move right when at board x limit', () => {
+    const board = {width: 1, height: 1};
     const player = Player.make('Bob');
     const game = Game.make(player, board);
 
@@ -112,7 +112,32 @@ describe('game', () => {
       }
     });
 
-    const state = game.next({ action: 'left' }).value;
+    const state = game.next('right').value;
+
+    expect(state).toMatchObject({
+      player: {
+        x: 0,
+        y: 0,
+      }
+    });
+
+    player.return(null);
+    game.return(null);
+  });
+
+  it('player cannot move down when at board y limit', () => {
+    const board = {width: 1, height: 1};
+    const player = Player.make('Bob');
+    const game = Game.make(player, board);
+
+    expect(game.next().value).toMatchObject({
+      player: {
+        x: 0,
+        y: 0,
+      }
+    });
+
+    const state = game.next('down').value;
 
     expect(state).toMatchObject({
       player: {

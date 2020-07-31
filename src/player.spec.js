@@ -39,4 +39,41 @@ describe('Player', () => {
       money: 10,
     });
   });
+
+  it.each`
+    action
+    ${'up'}
+    ${'down'}
+    ${'right'}
+    ${'left'}
+  `("cannot move a player $action when the board is a 1x1", ({x, y, action}) => {
+    const state = player.next({ action, board: { width: 1, height: 1 } }).value;
+
+    expect(state).toMatchObject({
+      x: 0,
+      y: 0,
+    });
+  });
+
+  it('can constrain x value based on action board size', () => {
+    const state = player.next({
+      action: 'right',
+      board: { width: 1, height: 1 },
+    }).value;
+
+    expect(state).toMatchObject({
+      x: 0,
+    });
+  });
+
+  it('can constrain x value based on action board size', () => {
+    const state = player.next({
+      action: 'down',
+      board: { width: 1, height: 1 },
+    }).value;
+
+    expect(state).toMatchObject({
+      y: 0,
+    });
+  });
 });
