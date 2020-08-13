@@ -76,4 +76,17 @@ describe('Player', () => {
       y: 0,
     });
   });
+  
+  it('cannot move over rocks', () => {
+    const state = player.next({
+      action: 'down',
+      board: { width: 1, height: 3 },
+      rocks: [{x: 0, y:1}]
+    }).value;
+
+    expect(state).toMatchObject({
+      x: 0,
+      y: 0,
+    });
+  });
 });

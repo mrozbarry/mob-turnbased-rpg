@@ -21,7 +21,9 @@ function* game(player, board) {
     // Tell money, using moneyState = money.next({ type: 'player-move', player })
     // player.next({ type: 'add-money' })
 
-    let nextPlayer = player ? player.next({ action, board: state.board }).value : undefined;
+    let nextPlayer = player
+      ? player.next({ action, board: state.board, rocks: state.rocks }).value
+      : undefined;
 
     const shouldPickUp = player && state.money.some(m => m.x === nextPlayer.x && m.y === nextPlayer.y);
     const pickupAction = shouldPickUp
