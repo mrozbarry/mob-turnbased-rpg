@@ -6,7 +6,9 @@
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "prettier --check \"src/**/*.js\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "simplex-noise": "^2.4.0"
+  },
   "devDependencies": {
     "jest": "^26.1.0",
     "jest-esm-transformer": "^1.0.0",
@@ -16,7 +18,7 @@
   "jest": {
     "verbose": true,
     "transform": {
-      ".js": "jest-esm-transformer" 
+      ".js": "jest-esm-transformer"
     }
   }
 }
