@@ -149,4 +149,20 @@ describe('game', () => {
     player.return(null);
     game.return(null);
   })
+
+  xit('can scroll the map', () => {
+    const board = {width: 1, height: 3};
+    const player = Player.make('Jim');
+    const game = Game.make(player, board);
+
+    game.next('down')
+    
+    expect(game.next().value.offset).toMatchObject({
+        x: 0,
+        y: 1,
+    });
+
+    player.return(null);
+    game.return(null);
+  });
 });
