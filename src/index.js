@@ -4,8 +4,8 @@ import * as Player from './player.js';
 const player = Player.make('Perpooply');
 const world = document.querySelector('#world');
 const size = {
-  width: 80,
-  height: 25,
+  width: 10,
+  height: 10,
 }
 
 const game = Game.make(player, size);
@@ -26,11 +26,11 @@ const update = (action) => {
       if (state.player.x === x && state.player.y === y) {
         characterToAdd = '@';
       }
-      if (state.rocks.find((rock) => rock.x == x && rock.y == y)) {
-        characterToAdd = '#';
-      }
       if (state.money.find((money) => money.x == x && money.y == y)) {
         characterToAdd = '$';
+      }
+      if (state.rocks.find((rock) => rock.x == x && rock.y == y)) {
+        characterToAdd = '#';
       }
       worldString += characterToAdd;
     }
