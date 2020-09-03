@@ -2,6 +2,7 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
+    "cli": "node -r esm ./src/index.ink.js",
     "test": "jest",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "prettier --check \"src/**/*.js\""
