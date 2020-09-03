@@ -7,7 +7,7 @@ const InkApp = () => {
 
   const [worldString, setWorldString] = useState('');
 
-  useInput((input, key) => {
+  useInput((_input, key) => {
     if(key.leftArrow) {
       updateFnRef.current('left');
     } else if(key.rightArrow) {
