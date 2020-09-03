@@ -1,14 +1,20 @@
-function* money(numberOfMoney, width, height) {
+function* money(noise2dFunction, board) {
+  // initial placement
   const state = []
-
-  while(numberOfMoney > 0) {
-    const x = Math.floor(Math.random() * width);
-    const y = Math.floor(Math.random() * height);
-
-    state.push({x, y});
-    numberOfMoney--;
+  console.log("money before placement", { noise2dFunction, board });
+  try {
+    for(let x = 0; x <= board.width; x++) {
+      for(let y = 0; y <= board.height; y++) {
+        if (noise2dFunction(x, y) < 0.5) continue;
+        console.log("money should be placed once");
+        state.push({ x, y });
+      }
+    }
+  } catch (err) {
+    console.log('ERROR', err);
   }
-  
+
+  // interaction
   while (true) {
     const action = yield state;
     if (!action) continue;
@@ -24,8 +30,8 @@ function* money(numberOfMoney, width, height) {
   }
 }
 
-export const make = (numberOfMoney, width, height) => {
-  const atom = money(numberOfMoney, width, height)
+export const make = (noise2dFunction, board) => {
+  const atom = money(noise2dFunction, board)
 
   atom.next()
 

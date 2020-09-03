@@ -2,10 +2,11 @@ import * as Money from './money.js';
 
 describe('money', () => {
   it('place money in world', () => {
-    const numberOfMoney = 33;
-    const boardWidth = 0;
-    const boardHeight = 0;
-    const money = Money.make(numberOfMoney, boardWidth, boardHeight);
+    const numberOfMoney = 1;
+
+    const board = { width: 0, height: 0 };
+    const noise2dFunction = () => 1;
+    const money = Money.make(noise2dFunction, board);
     const state = money.next().value;
 
     expect(state).toHaveLength(numberOfMoney);
@@ -14,37 +15,21 @@ describe('money', () => {
       expect(money.x).toBe(0);
       expect(money.y).toBe(0);
     });
+    money.return();
   });
 
   it('can remove money from the state by coordinates', () => { 
     const numberOfMoney = 1;
-    const boardWidth = 50;
-    const boardHeight = 50;
-    const money = Money.make(numberOfMoney, boardWidth, boardHeight);
+    const board = { width: 0, height: 0 };
+    const noise2dFunction = () => 1;
+    const money = Money.make(noise2dFunction, board);
     const state = money.next().value;
 
     expect(state).toHaveLength(numberOfMoney);
 
     const {x, y} = state[0];
-    money.next({action:'pick-up', x, y});
+    const { value: nextState } = money.next({action:'pick-up', x, y});
 
-    const nextState = money.next().value;
-    expect(state).toHaveLength(0);
-  })
-
-  it('can remove multiple money from the state by coordinates', () => { 
-    const numberOfMoney = 2;
-    const boardWidth = 0;
-    const boardHeight = 0;
-    const money = Money.make(numberOfMoney, boardWidth, boardHeight);
-    const state = money.next().value;
-
-    expect(state).toHaveLength(numberOfMoney);
-
-    const {x, y} = state[0];
-    money.next({action:'pick-up', x, y});
-
-    const nextState = money.next().value;
-    expect(state).toHaveLength(0);
-  })
+    expect(nextState).toHaveLength(0);
+  });
 });
